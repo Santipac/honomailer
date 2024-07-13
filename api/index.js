@@ -1,6 +1,8 @@
 import { Hono } from 'hono';
 import * as brevo from '@getbrevo/brevo';
 import { handle } from 'hono/vercel';
+import { cors } from 'hono/cors';
+import { logger } from 'hono/logger';
 
 const Brevo = new brevo.TransactionalEmailsApi();
 Brevo.setApiKey(
@@ -11,7 +13,8 @@ Brevo.setApiKey(
 const sendEmail = new brevo.SendSmtpEmail();
 
 const app = new Hono().basePath('/api')
-
+app.use(cors())
+app.use(logger())
 app.post('/send', async c => {
   try {
     const body = await c.req.json();
