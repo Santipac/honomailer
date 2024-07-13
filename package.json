@@ -1,10 +1,11 @@
 {
-  "type": "module", 
+  "type": "module",
   "scripts": {
     "start": "vercel dev",
     "deploy": "vercel"
   },
   "dependencies": {
+    "@getbrevo/brevo": "^2.2.0",
     "hono": "^4.4.2"
   },
   "devDependencies": {
